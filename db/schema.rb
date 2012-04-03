@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120402230408) do
+ActiveRecord::Schema.define(:version => 20120403193135) do
 
   create_table "activities", :force => true do |t|
     t.string   "description"
@@ -19,15 +19,17 @@ ActiveRecord::Schema.define(:version => 20120402230408) do
     t.datetime "updated_at"
   end
 
-  create_table "activities_users", :id => false, :force => true do |t|
-    t.integer  "user_id"
+  create_table "activities_users", :force => true do |t|
     t.integer  "activity_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|
     t.string   "facebook_id"
+    t.boolean  "fan"
+    t.boolean  "new_fan",             :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "avatar_file_name"

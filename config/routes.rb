@@ -3,6 +3,10 @@ Josecuervo::Application.routes.draw do
 
   resources :users
 
+  match 'users/find_or_create_fan/:id' => 'users#find_or_create_fan'
+
+  match 'users/add_activity/:id' => 'users#add_activity'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

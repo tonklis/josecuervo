@@ -14,7 +14,9 @@
   <div class="field">
     <%= f.label :facebook_id %><br />
     <%= f.text_field :facebook_id %> <br />
-    <%= f.file_field :avatar %>
+    <%= f.file_field :avatar %><br />
+    <%= f.check_box :fan %> <%= f.label :fan %><br />
+    <%= f.check_box :new_fan%> <%= f.label :new_fan  %>
   </div>
   <div class="actions">
     <%= f.submit %>

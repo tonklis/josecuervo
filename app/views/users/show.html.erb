@@ -4,6 +4,10 @@
   <b>Facebook:</b>
   <%= @user.facebook_id %>
   <br />
+  <%= @user.fan %>
+  <br />
+  <%= @user.new_fan %>
+  <br />
   <%= image_tag @user.avatar.url %>
   <%= image_tag @user.avatar.url(:medium) %>
   <%= image_tag @user.avatar.url(:thumb) %>

@@ -80,4 +80,23 @@ class UsersController < ApplicationController
       format.json { head :ok }
     end
   end
+
+  def find_or_create_fan
+    @user = User.find_or_create_fan(params[:id], params[:is_fan])
+    
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @user }
+    end
+  end
+
+  def add_activity
+    @user = User.add_activity(params[:id], params[:activity_id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @user, :include =>[:activities] }
+    end
+  end
+
 end
