@@ -1,0 +1,110 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
+	<head>
+		<title>Credencial Instituto Especial Electoral</title>
+		<meta property="og:title" content="Credencial Instituto Especial Electoral" />
+		<meta property="og:type" content="game" />
+		<meta property="og:url" content="http://apps.facebook.com/credencialiee/" />
+		<meta property="og:image" content="http://box.in2teck.com/images/logoFB.png"/>
+		
+	 	<!-- Include support librarys first -->
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.3.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/jquery-ui.min.js"></script>	
+		<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.css">
+		
+		<script type="text/javascript">
+	
+			var APP_ID = "325268767538047";			
+			var REDIRECT_URI = "http://apps.facebook.com/credencialiee/";		
+			var PERMS = "publish_stream,user_photos";
+			
+			//var fan_id = 160248073986708;
+			var fan_id = 201431119888121;
+			var fan = 0;
+			var user_id;
+
+			document.domain = "in2teck.com";
+			
+			function loginResult() {
+				FB.api('/me', function(response) {
+					user_id = response.id;
+					validaciones(user_id);
+				});
+			}
+			
+			function validaciones(id) {
+				FB.api(
+				{
+					method: 'fql.query',
+					query: 'SELECT uid, page_id FROM page_fan WHERE uid = ' + id + ' AND page_id = ' + fan_id
+				}, function(queryRes) {
+					
+					fan = (queryRes != '' && queryRes[0].uid == id ) ? 1 : 0;
+					embedPlayer();
+				});
+			}
+
+			
+			function embedPlayer() {
+				if (fan == 1)
+					alert('fan');
+				else 
+					alert('no fan');
+				/*var flashvars = {esFan:fan};
+				var attributes = {wmode: 'opaque', name:"flashContent"};
+				swfobject.embedSWF("Box2011.swf", "flashContent", "760", "800", "10.0", null, flashvars, null, attributes);*/
+			}
+			//Redirect for authorization for application loaded in an iFrame on Facebook.com 
+			function redirect(id,perms,uri) {
+				var params = window.location.toString().slice(window.location.toString().indexOf('?'));
+				params = params.toString().replace(/&/g, "%26");
+				top.location = 'https://graph.facebook.com/oauth/authorize?client_id='+id+'&scope='+perms+'&redirect_uri='+uri+params;				 
+			}
+
+			
+		</script>
+		
+		<STYLE type="text/css">
+  		.ui-widget-header {
+			background: #627AAD;
+			color: white
+		}
+		#terms-link {
+			text-align:center;
+			margin-top: 1em;
+			text-transform: uppercase;
+			font-size: 14px;
+		}
+ 		</STYLE>
+
+  </head>
+  <body>
+  HOLA MUNDO!!!
+    <div id="fb-root"></div>
+	<script type="text/javascript">
+		window.fbAsyncInit = function() {
+			FB.init({appId: APP_ID, status: true, cookie: true, xfbml: true, channelUrl  : 'http://jc.in2teck.com/channel.html'});
+			FB.getLoginStatus(function(response) {
+						if (response.authResponse) {
+							loginResult();
+						}
+						else {
+							redirect(APP_ID, PERMS, REDIRECT_URI);
+						}
+					});
+		};
+		(function(d){
+			var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+			if (d.getElementById(id)) {return;}
+			js = d.createElement('script'); js.id = id; js.async = true;
+			js.src = "//connect.facebook.net/en_US/all.js";
+			ref.parentNode.insertBefore(js, ref);
+	   }(document));
+	</script>
+	<div style="position: relative; z-index:3000">
+		<div class="flotante" style="visibility: visible; position:absolute; top:30px;left:55px;z-index:1000" id="invite_holder" ></div>
+	</div>
+	<div id="flashContent" style="z-index: 1"></div>
+	<!--div id="terms-link"><a href="http://apps.facebook.com/bajemosimpuestos/privacidad.html" target="_blank">Pol&iacute;ticas de privacidad</a></div-->
+  </body>
+</html>

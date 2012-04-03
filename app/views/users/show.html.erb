@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Facebook:</b>
+  <%= @user.facebook_id %>
+  <br />
+  <%= image_tag @user.avatar.url %>
+  <%= image_tag @user.avatar.url(:medium) %>
+  <%= image_tag @user.avatar.url(:thumb) %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
