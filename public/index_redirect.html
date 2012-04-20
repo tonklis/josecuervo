@@ -46,13 +46,9 @@
 
 			
 			function embedPlayer() {
-				if (fan == 1)
-					alert('fan');
-				else 
-					alert('no fan');
-				/*var flashvars = {esFan:fan};
+				var flashvars = {esFan:fan};
 				var attributes = {wmode: 'opaque', name:"flashContent"};
-				swfobject.embedSWF("Box2011.swf", "flashContent", "760", "800", "10.0", null, flashvars, null, attributes);*/
+				swfobject.embedSWF("Main.swf", "flashContent", "800", "800", "10.0", null, flashvars, null, attributes);
 			}
 			//Redirect for authorization for application loaded in an iFrame on Facebook.com 
 			function redirect(id,perms,uri) {
@@ -79,7 +75,6 @@
 
   </head>
   <body>
-  HOLA MUNDO!!!
     <div id="fb-root"></div>
 	<script type="text/javascript">
 		window.fbAsyncInit = function() {

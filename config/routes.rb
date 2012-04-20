@@ -7,6 +7,8 @@ Josecuervo::Application.routes.draw do
 
   match 'users/add_activity/:id' => 'users#add_activity'
 
+  match 'users/post_update/:id' => 'users#post_update'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
