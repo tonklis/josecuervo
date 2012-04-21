@@ -85,6 +85,11 @@ class UsersController < ApplicationController
   def post_update
 
     @user = User.find_by_facebook_id(params[:id])
+    newFile = File.new("#{params[:id]}.jpg", 'wb')
+    newFile.write(Base64.decode64(params[:avatar]))
+
+    params[:user] = {}
+    params[:user][:avatar] = newFile
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
@@ -94,6 +99,7 @@ class UsersController < ApplicationController
         format.html { render action: "edit" }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
+      File.delete("#{params[:id]}.jpg")
     end
 
   end

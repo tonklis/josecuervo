@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
 		user = User.find_by_facebook_id(facebook_id)
 		if not user
 			user = User.new(:facebook_id => facebook_id, :fan => is_fan)
+			user.save!
 		else
 			if is_fan and not user.fan
 				user.fan = true
