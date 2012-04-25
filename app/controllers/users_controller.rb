@@ -122,4 +122,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def send_email
+
+    @user = User.find_by_facebook_id(params[:id])
+    UserMailer.send_identification(@user, params[:email]).deliver
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @user }
+    end
+  end
+
 end
