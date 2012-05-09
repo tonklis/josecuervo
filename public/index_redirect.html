@@ -4,7 +4,7 @@
 		<meta property="og:title" content="Credencial Instituto Especial Electoral" />
 		<meta property="og:type" content="game" />
 		<meta property="og:url" content="http://apps.facebook.com/credencialiee/" />
-		<meta property="og:image" content="http://box.in2teck.com/images/logoFB.png"/>
+		<meta property="og:image" content="http://apps.t2omedia.com.mx/logoFB.png"/>
 		
 	 	<!-- Include support librarys first -->
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
@@ -15,15 +15,16 @@
 		<script type="text/javascript">
 	
 			var APP_ID = "325268767538047";			
-			var REDIRECT_URI = "http://apps.facebook.com/credencialiee/";		
+			var REDIRECT_URI = "http://www.facebook.com/JCEspecial/app_325268767538047?";
 			var PERMS = "publish_stream,user_photos";
 			
 			var fan_id = 160248073986708;
 			//var fan_id = 201431119888121;
 			var fan = 0;
 			var user_id;
-
-			document.domain = "in2teck.com";
+			var resultado;
+			
+			document.domain = "t2omedia.com.mx";
 			
 			function loginResult() {
 				FB.api('/me', function(response) {
@@ -38,8 +39,8 @@
 					method: 'fql.query',
 					query: 'SELECT uid, page_id FROM page_fan WHERE uid = ' + id + ' AND page_id = ' + fan_id
 				}, function(queryRes) {
-					
-					fan = (queryRes != '' && queryRes[0].uid == id ) ? 1 : 0;
+					resultado = queryRes;
+					fan = (resultado != '' && resultado[0] && resultado[0].is_app_user == true ) ? 1 : 0;
 					embedPlayer();
 				});
 			}
@@ -54,7 +55,7 @@
 			function redirect(id,perms,uri) {
 				var params = window.location.toString().slice(window.location.toString().indexOf('?'));
 				params = params.toString().replace(/&/g, "%26");
-				top.location = 'https://graph.facebook.com/oauth/authorize?client_id='+id+'&scope='+perms+'&redirect_uri='+uri+params;				 
+				top.location = 'https://www.facebook.com/dialog/oauth/?client_id='+id+'&scope='+perms+'&redirect_uri='+uri+params;				 
 			}
 
 			
@@ -78,7 +79,7 @@
     <div id="fb-root"></div>
 	<script type="text/javascript">
 		window.fbAsyncInit = function() {
-			FB.init({appId: APP_ID, status: true, cookie: true, xfbml: true, channelUrl  : 'http://jc.in2teck.com/channel.html'});
+			FB.init({appId: APP_ID, status: true, cookie: true, xfbml: true, channelUrl  : 'http://apps.t2omedia.com.mx/channel.html'});
 			FB.getLoginStatus(function(response) {
 						if (response.authResponse) {
 							loginResult();

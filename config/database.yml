@@ -4,8 +4,8 @@ development:
   reconnect: false
   database: jc_dev
   pool: 5
-  username: root
-  password: In2Teck2010
+  username: rails
+  password: t2omedia
   host: localhost
 
 test:
@@ -14,8 +14,8 @@ test:
   reconnect: false
   database: jc_test
   pool: 5
-  username: root
-  password: In2Teck2010
+  username: rails
+  password: t2omedia
   host: localhost
 
 production:
@@ -24,6 +24,6 @@ production:
   reconnect: false
   database: jc_prod
   pool: 5
-  username: root
-  password: In2Teck2010
+  username: rails
+  password: t2omedia
   host: localhost

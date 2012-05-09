@@ -132,4 +132,8 @@ class UsersController < ApplicationController
     end
   end
 
+  def redirect
+    redirect_to "/php1/index.php"
+  end
+
 end
