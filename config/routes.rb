@@ -11,7 +11,7 @@ Josecuervo::Application.routes.draw do
 
   match 'users/send_email/:id' => 'users#send_email'
 
-  match 'php1' => 'users#redirect'
+  #match 'php1' => 'users#redirect', :as => :php_redirect
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
