@@ -93,8 +93,11 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
+  
+        # USER
+        @user[:short_url] = "hola"
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { head :ok }
+        format.json { render json: @user }
       else
         format.html { render action: "edit" }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -105,7 +108,7 @@ class UsersController < ApplicationController
   end
 
   def find_or_create_fan
-    @user = User.find_or_create_fan(params[:id], params[:is_fan])
+    @user = User.find_or_create_fan(params[:id], params[:is_fan], params[:voting_app])
     
     respond_to do |format|
       format.html # show.html.erb

@@ -11,6 +11,7 @@
 <% @activities.each do |activity| %>
   <tr>
     <td><%= activity.description %></td>
+    <td><%= activity.candidato ? activity.candidato.name : nil %></td>
     <td><%= link_to 'Show', activity %></td>
     <td><%= link_to 'Edit', edit_activity_path(activity) %></td>
     <td><%= link_to 'Destroy', activity, confirm: 'Are you sure?', method: :delete %></td>

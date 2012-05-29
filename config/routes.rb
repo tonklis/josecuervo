@@ -1,4 +1,6 @@
 Josecuervo::Application.routes.draw do
+  resources :candidatos
+
   resources :activities
 
   resources :users

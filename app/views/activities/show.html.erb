@@ -5,6 +5,9 @@
   <%= @activity.description %>
 </p>
 
-
+<p>
+  <b>Candidato:</b>
+  <%= @activity.candidato.name %>
+</p>
 <%= link_to 'Edit', edit_activity_path(@activity) %> |
 <%= link_to 'Back', activities_path %>
