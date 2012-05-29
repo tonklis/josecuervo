@@ -27,6 +27,8 @@ class User < ActiveRecord::Base
         user.save!
       end
 		end
+
+    user[:can_vote] = user.can_vote
 		return user
 	end
 
@@ -34,13 +36,23 @@ class User < ActiveRecord::Base
 
 		user = User.find_by_facebook_id(facebook_id)
 		activity = Activity.find(activity_id)
-		if user and activity
-			if user.activities.empty?
-				user.activities = []
-			end
-			user.activities << activity
-			user.save!
+		if user and user.validate_vote(activity)
+		  user.activities << activity
+		  user.save!
 		end
 		return user
 	end
+
+  def can_vote
+     !self.activities.where("candidato_id is not null").empty? 
+  end
+
+  def validate_vote activity
+    if activity
+      return true
+    else
+      return false
+    end
+  end
+
 end

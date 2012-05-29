@@ -1,29 +1,17 @@
 development:
-  adapter: mysql
-  encoding: utf8
-  reconnect: true
-  database: jc_dev
-  pool: 15
-  username: rails
-  password: t2omedia
-  host: localhost
+  adapter: sqlite3
+  database: db/development.sqlite3
+  pool: 5
+  timeout: 5000
 
 test:
-  adapter: mysql
-  encoding: utf8
-  reconnect: true
-  database: jc_test
-  pool: 15
-  username: rails
-  password: t2omedia
-  host: localhost
+  adapter: sqlite3
+  database: db/test.sqlite3
+  pool: 5
+  timeout: 5000
 
 production:
-  adapter: mysql
-  encoding: utf8
-  reconnect: true
-  database: jc_prod
-  pool: 15
-  username: rails
-  password: t2omedia
-  host: localhost
+  adapter: sqlite3
+  database: db/production.sqlite3
+  pool: 5
+  timeout: 5000
