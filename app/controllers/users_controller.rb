@@ -136,7 +136,8 @@ class UsersController < ApplicationController
   end
 
   def redirect
-    redirect_to "/php1/index.php"
+    @params = params
+    #redirect_to("/php1/index.php?signed_request=#{params[:signed_request]}")
   end
 
 end

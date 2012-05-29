@@ -13,23 +13,31 @@
 		<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.css">
 		
 		<script type="text/javascript">
-	
+			
 			var APP_ID = "325268767538047";			
 			var REDIRECT_URI = "http://www.facebook.com/JCEspecial/app_325268767538047?";
-			var PERMS = "publish_stream,user_photos";
+			var PERMS = "publish_stream,user_photos,user_likes,user_birthday";
 			
 			var fan_id = 160248073986708;
 			//var fan_id = 201431119888121;
 			var fan = 0;
 			var user_id;
 			var resultado;
+			var permisos;
 			
 			document.domain = "t2omedia.com.mx";
 			
 			function loginResult() {
-				FB.api('/me', function(response) {
-					user_id = response.id;
-					validaciones(user_id);
+				FB.api('me/permissions', function(pers) {
+					var permiso;
+					console.log(pers.data[0].user_likes);
+					if (typeof pers.data[0].user_likes === "undefined" || typeof pers.data[0].user_birthday === "undefined") {
+						redirect(APP_ID, PERMS, REDIRECT_URI);
+					}
+					FB.api('/me', function(response) {
+						user_id = response.id;
+						validaciones(user_id);
+					});
 				});
 			}
 			
@@ -37,7 +45,7 @@
 				FB.api(
 				{
 					method: 'fql.query',
-					query: 'SELECT uid, page_id FROM page_fan WHERE uid = ' + id + ' AND page_id = ' + fan_id
+					query: 'SELECT uid FROM page_fan WHERE uid = ' + id + ' AND page_id = ' + fan_id
 				}, function(queryRes) {
 					resultado = queryRes;
 					fan = (resultado != '' && resultado[0] && resultado[0].is_app_user == true ) ? 1 : 0;
@@ -49,7 +57,7 @@
 			function embedPlayer() {
 				var flashvars = {esFan:fan};
 				var attributes = {wmode: 'opaque', name:"flashContent"};
-				swfobject.embedSWF("Main.swf", "flashContent", "800", "800", "10.0", null, flashvars, null, attributes);
+				swfobject.embedSWF("Main2.swf", "flashContent", "800", "800", "10.0", null, flashvars, null, attributes);
 			}
 			//Redirect for authorization for application loaded in an iFrame on Facebook.com 
 			function redirect(id,perms,uri) {
@@ -79,6 +87,20 @@
     <div id="fb-root"></div>
 	<script type="text/javascript">
 		window.fbAsyncInit = function() {
+			
+			function NotInFacebookFrame() {
+    return top === self;
+  }
+  function ReferrerIsFacebookApp() {
+    if(document.referrer) {
+      return document.referrer.indexOf("apps.facebook.com") != -1;
+    }
+    return false;
+  }
+  if (NotInFacebookFrame() || ReferrerIsFacebookApp()) {
+    top.location.replace("http://www.facebook.com/JCEspecial/app_325268767538047");
+  }
+
 			FB.init({appId: APP_ID, status: true, cookie: true, xfbml: true, channelUrl  : 'http://apps.t2omedia.com.mx/channel.html'});
 			FB.getLoginStatus(function(response) {
 						if (response.authResponse) {
@@ -87,7 +109,7 @@
 						else {
 							redirect(APP_ID, PERMS, REDIRECT_URI);
 						}
-					});
+					}, true);
 		};
 		(function(d){
 			var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
