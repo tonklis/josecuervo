@@ -1,4 +1,6 @@
 Josecuervo::Application.routes.draw do
+  resources :referrals
+
   resources :candidatos
 
   resources :activities
