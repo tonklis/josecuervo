@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
 	:url => "/system/:class/:attachment/:id/:style/:basename.:extension"
 	has_many :activities_users
 	has_many :activities, :through => :activities_users
-  has_many :referrals, :class_name => "Referral", :foreign_key => :referred_id
+  has_many :referrals, :class_name => "Referral", :foreign_key => :owner_id
 
 	def self.find_or_create_fan facebook_id, is_fan, voting_app
 
