@@ -4,6 +4,8 @@
   <tr>
     <th>Owner</th>
     <th>Referred</th>
+    <th>Referral accepted?</th>
+    <th>Created_at</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,6 +15,8 @@
   <tr>
     <td><%= referral.owner_id %></td>
     <td><%= referral.referred_id %></td>
+    <td><%= referral.request_accepted %></td>
+    <td><%= referral.created_at %></td>
     <td><%= link_to 'Show', referral %></td>
     <td><%= link_to 'Edit', edit_referral_path(referral) %></td>
     <td><%= link_to 'Destroy', referral, confirm: 'Are you sure?', method: :delete %></td>
