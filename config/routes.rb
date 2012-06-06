@@ -14,6 +14,10 @@ Josecuervo::Application.routes.draw do
   match 'users/post_update/:id' => 'users#post_update'
 
   match 'users/send_email/:id' => 'users#send_email'
+  
+  match 'referrals/bulk_create/:id' => 'referrals#bulk_create'
+  
+  match 'referrals/accept/:id' => 'referrals#accept'
 
   #match 'php1' => 'users#redirect', :as => :php_redirect
 

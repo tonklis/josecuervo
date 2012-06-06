@@ -80,4 +80,24 @@ class ReferralsController < ApplicationController
       format.json { head :ok }
     end
   end
+
+  # POST /referrals/bulk_create/[facebook_id].json
+  def bulk_create
+    puts params
+    @referrals = Referral.bulk_create(params[:id], params[:referrals] )
+    respond_to do |format|
+      format.json { render json: @referrals }
+    end
+
+  end
+
+  def accept
+
+    @referral = Referral.accept(params[:id])
+    respond_to do |format|
+      format.json { render json: @referral }
+    end
+
+  end
+
 end
