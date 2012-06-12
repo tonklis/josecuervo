@@ -45,7 +45,14 @@ class User < ActiveRecord::Base
 	end
 
   def can_vote
-		self.activities.where("candidato_id is not null and created_at >= ?", Time.now.beginning_of_day).empty?
+                activities = self.activities_users.where("created_at >= ?", Time.now.beginning_of_day)
+		activities.each do |au|
+			if au.activity.candidato_id != nil
+				return false
+			end
+		end
+		return true
+
   end
 
 end
