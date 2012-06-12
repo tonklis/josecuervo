@@ -83,6 +83,17 @@ class ActivitiesController < ApplicationController
 
 	
 	def total_votes
+		total_votes = {}
+		activities = Activity.where("candidato_id is not null")
+		votes = 0
+		activities.each do |activity|
+			votes += activity[:votes] = activity.activities_users.count
+			total_votes[activity.description] = activity
+		end
+		total_votes[:votes] = votes
 
+    respond_to do |format|
+      format.json { render json: total_votes }
+    end
 	end
 end

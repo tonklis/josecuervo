@@ -21,6 +21,8 @@ Josecuervo::Application.routes.draw do
 
 	match 'home' => 'display#home'
 
+	match 'activities/total_votes' => 'activities#total_votes'
+
   #match 'php1' => 'users#redirect', :as => :php_redirect
 
   # The priority is based upon order of creation:

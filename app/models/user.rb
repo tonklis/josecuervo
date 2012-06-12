@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
 	end
 
   def can_vote
-                activities = self.activities_users.where("created_at >= ?", Time.now.beginning_of_day)
+    activities = self.activities_users.where("created_at >= ?", Time.now.beginning_of_day)
 		activities.each do |au|
 			if au.activity.candidato_id != nil
 				return false
