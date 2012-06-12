@@ -91,6 +91,7 @@ class ReferralsController < ApplicationController
 
   end
 
+	# GET /referrals/accept/1.json
   def accept
 
     @referral = Referral.accept(params[:id])

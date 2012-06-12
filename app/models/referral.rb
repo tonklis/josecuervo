@@ -19,11 +19,15 @@ class Referral < ActiveRecord::Base
   def self.accept id
 
     referral = Referral.find(id)
-    referral.request_accepted = true
+    referral.request_accepted = referral.verify_request
     referral.save!
 
     return referral
 
   end
+
+	def verify_request
+		Referral.where("referred_id = ? and owner_id <> ? and request_accepted = true and created_at >= ?", self.referred_id, self.owner_id, Time.now.beginning_of_day).empty?
+	end
 
 end

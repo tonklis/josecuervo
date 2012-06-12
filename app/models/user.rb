@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
 
 		user = User.find_by_facebook_id(facebook_id)
 		activity = Activity.find(activity_id)
-		if user and user.validate_vote(activity)
+		if user and user.can_vote
 		  user.activities << activity
 		  user.save!
 		end
@@ -45,15 +45,7 @@ class User < ActiveRecord::Base
 	end
 
   def can_vote
-     !self.activities.where("candidato_id is not null").empty? 
-  end
-
-  def validate_vote activity
-    if activity
-      return true
-    else
-      return false
-    end
+		self.activities.where("candidato_id is not null and created_at >= ?", Time.now.beginning_of_day).empty?
   end
 
 end

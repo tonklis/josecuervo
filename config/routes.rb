@@ -19,6 +19,8 @@ Josecuervo::Application.routes.draw do
   
   match 'referrals/accept/:id' => 'referrals#accept'
 
+	match 'home' => 'display#home'
+
   #match 'php1' => 'users#redirect', :as => :php_redirect
 
   # The priority is based upon order of creation:

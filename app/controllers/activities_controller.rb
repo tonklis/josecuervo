@@ -80,4 +80,9 @@ class ActivitiesController < ApplicationController
       format.json { head :ok }
     end
   end
+
+	
+	def total_votes
+
+	end
 end
