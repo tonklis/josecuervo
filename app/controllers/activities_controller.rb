@@ -89,7 +89,7 @@ class ActivitiesController < ApplicationController
 		votes = 0
 		activities.each do |activity|
 			votes += activity[:votes] = activity.activities_users.count
-			activity[:users] = activity.users[0..5]
+			activity[:voter_ids] = ActivitiesUser.find_by_sql("SELECT facebook_id FROM users WHERE id IN(SELECT DISTINCT user_id FROM activities_users WHERE activity_id = #{activity.id} ORDER BY created_at DESC) LIMIT 6")
 			total_votes[:activities] << activity
 		end
 		total_votes[:votes] = votes
