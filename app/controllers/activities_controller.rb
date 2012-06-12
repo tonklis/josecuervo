@@ -89,6 +89,7 @@ class ActivitiesController < ApplicationController
 		votes = 0
 		activities.each do |activity|
 			votes += activity[:votes] = activity.activities_users.count
+			activity[:users] = activity.users[0..5]
 			total_votes[:activities] << activity
 		end
 		total_votes[:votes] = votes
