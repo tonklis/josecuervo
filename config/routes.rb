@@ -21,7 +21,7 @@ Josecuervo::Application.routes.draw do
 
 	match 'home' => 'display#home'
 
-	match 'activities/total_votes' => 'activities#total_votes'
+	match 'activities/total_votes/:id' => 'activities#total_votes'
 
   #match 'php1' => 'users#redirect', :as => :php_redirect
 
