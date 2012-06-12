@@ -121,7 +121,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @user, :include =>[:activities] }
+      format.json { render json: @user }
     end
   end
 

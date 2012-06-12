@@ -37,9 +37,17 @@ class User < ActiveRecord::Base
 
 		user = User.find_by_facebook_id(facebook_id)
 		activity = Activity.find(activity_id)
-		if user and user.can_vote
-		  user.activities << activity
-		  user.save!
+		if activity.candidato_id
+				if user and user.can_vote
+		 	 		user.activities << activity
+		  		user.save!
+					user[:voted] = true
+				else
+					user[:voted] = false
+				end
+		else
+			user.activities << activity
+			user.save!
 		end
 		return user
 	end

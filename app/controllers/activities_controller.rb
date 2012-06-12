@@ -83,17 +83,7 @@ class ActivitiesController < ApplicationController
 
   # GET /activities/total_votes/1.json	
 	def total_votes
-		total_votes = {}
-		total_votes[:activities] = []
-		activities = Activity.where("candidato_id is not null")
-		votes = 0
-		activities.each do |activity|
-			votes += activity[:votes] = activity.activities_users.count
-			activity[:voter_ids] = ActivitiesUser.find_by_sql("SELECT facebook_id FROM users WHERE id IN(SELECT DISTINCT user_id FROM activities_users WHERE activity_id = #{activity.id} ORDER BY created_at DESC) LIMIT 6")
-			total_votes[:activities] << activity
-		end
-		total_votes[:votes] = votes
-
+		total_votes = Activity.get_total_votes
     respond_to do |format|
       format.json { render json: total_votes }
     end

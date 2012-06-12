@@ -94,7 +94,7 @@ class ReferralsController < ApplicationController
 	# GET /referrals/accept/1.json
   def accept
 
-    @referral = Referral.accept(params[:id])
+    @referral = Referral.accept(params[:id], params[:referred_id])
     respond_to do |format|
       format.json { render json: @referral }
     end
