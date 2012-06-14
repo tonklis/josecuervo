@@ -3,5 +3,40 @@
  * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
  * the top of the compiled file, but it's generally better to create a new file per style scope.
  *= require_self
- *= require_tree . 
 */
+body {
+	background-color:#ffef00;
+}
+
+.limon{
+	float: left;
+	margin: 0 15px 0 25px;
+	background-image:url('fondo_limon.png');
+	width: 242px;
+	height: 486px;
+}
+
+.boton {
+	padding-top: 250px;
+}
+
+.leyenda {
+	padding-top: 50px;
+}
+
+.manzana{
+	float: left;
+	margin: 0 15px 0 0;
+	background-image:url('fondo_manzana.png');
+	width: 242px;
+	height: 486px;
+}
+
+.toronja{
+	float: left;
+	margin: 0 35px 0 0;
+	margin: 0 15px 0 0;
+	background-image:url('fondo_toronja.png');
+	width: 242px;
+	height: 486px;	
+}
