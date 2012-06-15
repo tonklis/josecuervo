@@ -45,9 +45,24 @@ body {
 	margin-top: 20px;
 	margin-left:auto;
 	margin-right:auto;
-	width:820px;	
+	width:820px;
 }
 
-#outer {width: 100%;}
-#middle {width: 100%; text-align: center;}
-#inner {width: 100%; margin-left: auto; margin-right: auto; text-align: left;}
+.outer{
+height: 100%;
+overflow: hidden;
+display: table;
+width: 100%;
+}
+
+.middle{
+top: 50%;
+display: table-cell;
+vertical-align: middle;
+text-align: center;
+}
+
+.inner{
+}
+
+
