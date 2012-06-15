@@ -1,4 +1,6 @@
 Josecuervo::Application.routes.draw do
+	devise_for :users, :controllers => {:omniauth_callbacks => "users/omniauth_callbacks"}
+
   resources :referrals
 
   resources :candidatos
@@ -19,7 +21,7 @@ Josecuervo::Application.routes.draw do
   
   match 'referrals/accept/:id' => 'referrals#accept'
 
-	match 'home' => 'display#home'
+	match 'home' => 'display#home', :as => :home
 
 	match 'activities/total_votes/:id' => 'activities#total_votes'
 
@@ -75,6 +77,8 @@ Josecuervo::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   # root :to => 'welcome#index'
+
+  root :to => "display#index"	
 
   # See how all your routes lay out with "rake routes"
 
