@@ -10,7 +10,7 @@ body {
 
 .limon{
 	float: left;
-	margin: 0 15px 0 25px;
+	margin: 25px 15px 0 25px;
 	background-image:url('fondo_limon.png');
 	width: 242px;
 	height: 486px;
@@ -27,7 +27,7 @@ body {
 
 .manzana{
 	float: left;
-	margin: 0 15px 0 0;
+	margin: 25px 15px 0 0;
 	background-image:url('fondo_manzana.png');
 	width: 242px;
 	height: 486px;
@@ -35,8 +35,7 @@ body {
 
 .toronja{
 	float: left;
-	margin: 0 35px 0 0;
-	margin: 0 15px 0 0;
+	margin: 25px 35px 0 0;
 	background-image:url('fondo_toronja.png');
 	width: 242px;
 	height: 486px;	
@@ -46,5 +45,5 @@ body {
 	margin-top: 20px;
 	margin-left:auto;
 	margin-right:auto;
-	width:70%;	
+	width:820px;	
 }
