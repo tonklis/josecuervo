@@ -7,8 +7,10 @@ gem 'rails', '3.1.0'
 
 gem 'sqlite3'
 #gem 'mysql'
-gem 'paperclip'
+gem 'paperclip', "~> 3.0.4"
 gem 'therubyracer'
+gem 'devise'
+gem 'omniauth-twitter'
 
 # Gems used only for assets and not required
 # in production environments by default.
