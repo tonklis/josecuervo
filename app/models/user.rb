@@ -2,20 +2,20 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
-	devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :omniauthable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :omniauthable
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me
 
 	def self.find_for_twitter_oauth(auth_hash)
 		user = User.find_by_facebook_id auth_hash["uid"]
-		if not usuario
-			usuario = Usuario.new
-			usuario.facebook_id = auth_hash["uid"]
-			usuario.email = auth_hash["info"]["nickname"]
-			usuario.save!
+		if not user
+			user = User.new
+			user.facebook_id = auth_hash["uid"]
+			user.email = auth_hash["info"]["nickname"]
+			user.save!
 		end
-		return usuario		
+		return user	
 	end
 
 	has_attached_file :avatar,

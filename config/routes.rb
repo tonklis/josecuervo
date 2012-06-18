@@ -1,5 +1,5 @@
 Josecuervo::Application.routes.draw do
-	devise_for :users, :controllers => {:omniauth_callbacks => "users/omniauth_callbacks"}
+  devise_for :users, :controllers => {:omniauth_callbacks => "users/omniauth_callbacks"}
 
   resources :referrals
 
@@ -21,9 +21,11 @@ Josecuervo::Application.routes.draw do
   
   match 'referrals/accept/:id' => 'referrals#accept'
 
-	match 'home' => 'display#home', :as => :home
+  match 'home' => 'display#home', :as => :home
 
-	match 'activities/total_votes/:id' => 'activities#total_votes'
+  match 'login' => 'display#index', :as => :login
+
+  match 'activities/total_votes/:id' => 'activities#total_votes'
 
   #match 'php1' => 'users#redirect', :as => :php_redirect
 
@@ -78,7 +80,7 @@ Josecuervo::Application.routes.draw do
   # just remember to delete public/index.html.
   # root :to => 'welcome#index'
 
-  root :to => "display#index"	
+  #root :to => "display#index"	
 
   # See how all your routes lay out with "rake routes"
 
