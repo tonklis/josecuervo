@@ -71,6 +71,24 @@ class User < ActiveRecord::Base
 		return user
 	end
 
+	def post_to_twitter(token_hash, candidato)
+    consumer = OAuth::Consumer.new(
+        'Me9T4gLX50eoE0iUztn5Sw',
+        'ZiIUWr6CXJc2DOxkHgXPdIPaa5l36pyDw4aKHb20jg',
+        :site => 'http://api.twitter.com'
+    )
+
+    access_token = OAuth::AccessToken.from_hash(consumer, token_hash)
+		
+		message = "Yo Voto#{candidato.name} como el mejor candidato para mezclar con tequila, emite tu VOTO en: http://jc.in2teck.com/login"
+    access_token.request(
+        :post,
+        'http://api.twitter.com/1/statuses/update.json',
+        :status => message
+    )
+
+  end
+
   def can_vote
     activities = self.activities_users.where("created_at >= ?", Time.now.beginning_of_day)
 		activities.each do |au|
