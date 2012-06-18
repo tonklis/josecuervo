@@ -119,10 +119,10 @@ class UsersController < ApplicationController
   def add_activity
     @user = User.add_activity(params[:id], params[:activity_id])
 		if @user[:voted] 
-			@user.post_to_twitter(session[:oauth_tokens], Activity.find(params[:activity_id].candidato.name))
+			@user.post_to_twitter(session[:oauth_tokens], Activity.find(params[:activity_id]).candidato)
 		end
     respond_to do |format|
-      format.html # show.html.erb
+      redirect_to home_path
       format.json { render json: @user }
     end
   end
