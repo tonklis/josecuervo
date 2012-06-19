@@ -122,7 +122,6 @@ class UsersController < ApplicationController
 			@user.post_to_twitter(session[:oauth_tokens], Activity.find(params[:activity_id]).candidato)
 		end
     respond_to do |format|
-      redirect_to home_path
       format.json { render json: @user }
     end
   end

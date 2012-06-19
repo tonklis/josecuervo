@@ -80,7 +80,7 @@ class User < ActiveRecord::Base
 
     access_token = OAuth::AccessToken.from_hash(consumer, token_hash)
 		
-		message = "Yo Voto#{candidato.name} como el mejor candidato para mezclar con tequila, emite tu VOTO en: http://jc.in2teck.com/login"
+		message = "Yo #Voto#{candidato.name} como el mejor candidato para mezclar con tequila, emite tu VOTO en: http://jc.in2teck.com/login"
     access_token.request(
         :post,
         'http://api.twitter.com/1/statuses/update.json',
@@ -99,5 +99,11 @@ class User < ActiveRecord::Base
 		return true
 
   end
+
+	def last_vote
+		au = ActivitiesUser.find(:first, :conditions => "user_id = #{self.id} and activities.candidato_id is not null", :joins => " INNER JOIN activities ON activities.id = activities_users.activity_id")
+
+		return Candidato.find(au.activity.candidato_id)
+	end
 
 end

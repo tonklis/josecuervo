@@ -11,9 +11,32 @@ body {
 .limon{
 	float: left;
 	margin: 25px 15px 0 25px;
-	background-image:url('fondo_limon.png');
+	background-image:url('mobile/limon_normal.png');
 	width: 242px;
 	height: 486px;
+}
+
+.limon_ganador{
+	float: left;
+	margin: 25px 15px 0 25px;
+	background-image:url('mobile/limon_ganador.png');
+	width: 242px;
+	height: 486px;
+}
+
+.limon_perdedor{
+	float: left;
+	margin: 25px 15px 0 25px;
+	background-image:url('mobile/limon_perdedor.png');
+	width: 242px;
+	height: 486px;
+}
+
+.liston_limon{
+	width: 242px;
+	height: 51px;
+	margin-top: 410px;
+	background-image:url('liston_limon.png');
 }
 
 .boton {
@@ -28,17 +51,63 @@ body {
 .manzana{
 	float: left;
 	margin: 25px 15px 0 0;
-	background-image:url('fondo_manzana.png');
+	background-image:url('mobile/manzana_normal.png');
 	width: 242px;
 	height: 486px;
+}
+
+.manzana_ganador{
+	float: left;
+	margin: 25px 15px 0 0;
+	background-image:url('mobile/manzana_ganador.png');
+	width: 242px;
+	height: 486px;
+}
+
+.manzana_perdedor{
+	float: left;
+	margin: 25px 15px 0 0;
+	background-image:url('mobile/manzana_perdedor.png');
+	width: 242px;
+	height: 486px;
+}
+
+.liston_manzana{
+	width: 242px;
+	height: 51px;
+	margin-top: 410px;
+	background-image:url('liston_manzana.png');
 }
 
 .toronja{
 	float: left;
 	margin: 25px 35px 0 0;
-	background-image:url('fondo_toronja.png');
+	background-image:url('mobile/toronja_normal.png');
 	width: 242px;
 	height: 486px;	
+}
+
+.toronja_ganador{
+	float: left;
+	margin: 25px 35px 0 0;
+	background-image:url('mobile/toronja_ganador.png');
+	width: 242px;
+	height: 486px;	
+}
+
+.toronja_perdedor{
+	float: left;
+	margin: 25px 35px 0 0;
+	background-image:url('mobile/toronja_perdedor.png');
+	width: 242px;
+	height: 486px;	
+}
+
+.liston_toronja{
+	width: 242px;
+	height: 51px;
+	margin-top: 410px;
+	background-image:url('liston_toronja.png');
 }
 
 .frame{
@@ -46,23 +115,15 @@ body {
 	margin-left:auto;
 	margin-right:auto;
 	width:820px;
+	text-align: center;
 }
 
-.outer{
-height: 100%;
-overflow: hidden;
-display: table;
-width: 100%;
+.footer{
+	padding-top: 20px;
 }
 
-.middle{
-top: 50%;
-display: table-cell;
-vertical-align: middle;
-text-align: center;
+.numeros_votacion{
+	padding-top: 12px;
+	margin-left: 45px;
+	font-size: 24px;	
 }
-
-.inner{
-}
-
-
