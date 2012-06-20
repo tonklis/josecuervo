@@ -11,7 +11,6 @@
 </script>
 
 <div class="frame">
-	<div style="height: 820px;">
 		<%= image_tag "liston_top.png" %>
 		<%= image_tag "top_votacion.png" %>
 		<div class="limon" onClick="postData(<%= Candidato.find(1).activities.last.id %>)">
@@ -21,5 +20,4 @@
 		<div class="toronja" onClick="postData(<%= Candidato.find(2).activities.last.id %>)">
 		</div>
 		</a>
-	</div>
 </div>
