@@ -129,6 +129,13 @@ body {
 	float: left;
 }
 
+.mensaje{
+	font-family: "Arial";
+	text-align: center;
+	width: 100%;
+	float: left;
+}
+
 .numeros_votacion{
 	font-family: "Arial";
 	color: white;

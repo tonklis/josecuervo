@@ -101,7 +101,7 @@ class User < ActiveRecord::Base
   end
 
 	def last_vote
-		au = ActivitiesUser.find(:first, :conditions => "user_id = #{self.id} and activities.candidato_id is not null", :joins => " INNER JOIN activities ON activities.id = activities_users.activity_id")
+		au = ActivitiesUser.find(:last, :conditions => "user_id = #{self.id} and activities.candidato_id is not null", :joins => " INNER JOIN activities ON activities.id = activities_users.activity_id")
 
 		return Candidato.find(au.activity.candidato_id)
 	end

@@ -4,9 +4,9 @@
 	$.ajax({
   	type: 'POST',
   	url: url
+	}).done(function() {
+		window.location = 'votacion';
 	});
-
-	window.location = "votacion";
 }
 </script>
 
