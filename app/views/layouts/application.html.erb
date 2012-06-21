@@ -7,11 +7,13 @@
   <%= csrf_meta_tags %>
 
 	<script type="text/javascript">
-		if (navigator.userAgent.match(/BlackBerry/i)) {
-			$("#footer")[0].className="footer2";
-		}
-		else {
-			$("#footer")[0].className="footer";
+		window.onload = function() {
+			if (navigator.userAgent.match(/BlackBerry/i)) {
+				$("#footer")[0].className="footer2";
+			}
+			else {
+				$("#footer")[0].className="footer";
+			}
 		}
 	</script>
 
