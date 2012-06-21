@@ -5,12 +5,22 @@
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+
+	<script type="text/javascript">
+		if (navigator.userAgent.match(/BlackBerry/i)) {
+			$("#footer")[0].className="footer2";
+		}
+		else {
+			$("#footer")[0].className="footer";
+		}
+	</script>
+
 </head>
 <body style="height: 100%;">
 
 <%= yield %>
 
-<div class="footer">
+<div id="footer">
 		<a href="">Términos y Condiciones</a> CONOCER ES NO EXCEDERSE <a href="">WWW.ALCOHOL-INFORMATE.COM.MX</a>
 </div>
 
