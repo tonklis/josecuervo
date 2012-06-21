@@ -14,6 +14,7 @@ body {
 	background-image:url('mobile/limon_normal.png');
 	width: 242px;
 	height: 486px;
+	cursor: pointer;
 }
 
 .limon_ganador{
@@ -54,6 +55,7 @@ body {
 	background-image:url('mobile/manzana_normal.png');
 	width: 242px;
 	height: 486px;
+	cursor: pointer;
 }
 
 .manzana_ganador{
@@ -85,6 +87,7 @@ body {
 	background-image:url('mobile/toronja_normal.png');
 	width: 242px;
 	height: 486px;	
+	cursor: pointer;
 }
 
 .toronja_ganador{
