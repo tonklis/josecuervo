@@ -108,7 +108,7 @@ class UsersController < ApplicationController
   end
 
   def find_or_create_fan
-    @user = User.find_or_create_fan(params[:id], params[:is_fan], params[:voting_app])
+    @user = User.find_or_create_fan(params[:id], params[:is_fan], params[:voting_app], params[:email])
     
     respond_to do |format|
       format.html # show.html.erb
@@ -118,8 +118,10 @@ class UsersController < ApplicationController
 
   def add_activity
     @user = User.add_activity(params[:id], params[:activity_id])
-		if @user[:voted] 
-			@user.post_to_twitter(session[:oauth_tokens], Activity.find(params[:activity_id]).candidato)
+		if @user[:voted]
+			if session[:oauth_tokens]
+				@user.post_to_twitter(session[:oauth_tokens], Activity.find(params[:activity_id]).candidato)
+			end
 		end
     respond_to do |format|
       format.json { render json: @user }

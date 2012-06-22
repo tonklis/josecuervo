@@ -26,14 +26,18 @@ class User < ActiveRecord::Base
 	has_many :activities, :through => :activities_users
   has_many :referrals, :class_name => "Referral", :foreign_key => :owner_id
 
-	def self.find_or_create_fan facebook_id, is_fan, voting_app
+	def self.find_or_create_fan facebook_id, is_fan, voting_app, email
 
 		user = User.find_by_facebook_id(facebook_id)
 		if not user
-			user = User.new(:facebook_id => facebook_id, :fan => is_fan, :voting_app => voting_app)
+			user = User.new(:facebook_id => facebook_id, :fan => is_fan, :voting_app => voting_app, :email => email)
 			user.save!
 		else
       update = false
+			if (not user.email or user.email == "") and (email != nil or email != "")
+				user.email = email 
+				update = true
+			end
 			if is_fan and not user.fan
 				user.fan = true
 				user.new_fan = true
