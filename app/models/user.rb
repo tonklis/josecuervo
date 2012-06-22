@@ -80,7 +80,7 @@ class User < ActiveRecord::Base
 
     access_token = OAuth::AccessToken.from_hash(consumer, token_hash)
 		
-		message = "Yo #Voto#{candidato.name} como el mejor candidato para mezclar con tequila, emite tu VOTO en: http://jc.in2teck.com/login"
+		message = "Yo #Voto#{candidato.name} como el mejor candidato para mezclar con tequila, emite tu VOTO en: http://apps.t2omedia.com.mx/login"
     access_token.request(
         :post,
         'http://api.twitter.com/1/statuses/update.json',
