@@ -14,9 +14,9 @@ class Activity < ActiveRecord::Base
 			voter_ids = ActivitiesUser.find_by_sql("SELECT DISTINCT user_id FROM activities_users WHERE activity_id = #{activity.id} ORDER BY updated_at DESC LIMIT 20")
 			activity[:voter_ids] = []
 			voter_ids.each do |voter|
-				u =  User.find(voter.user_id).facebook_id
+				u =  User.find(voter.user_id)
 					if u.fan and activity[:voter_ids].length < 6
-						activity[:voter_ids] <<	u
+						activity[:voter_ids] <<	u.facebook_id
 					end		
 				end
 			total_votes[:activities] << activity
