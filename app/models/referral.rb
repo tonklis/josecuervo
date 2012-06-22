@@ -19,9 +19,9 @@ class Referral < ActiveRecord::Base
 
   def self.accept facebook_id, referred_id
 
-    user = User.find_by_facebook_id (facebook_id) 
+    referred = User.find_by_facebook_id (referred_id) 
 
-    referral = Referral.where("request_accepted = ? and owner_id = ? and referred_id = ?", false, user.id, referred_id).order("updated_at DESC").first
+    referral = Referral.where("request_accepted = ? and owner_id = ? and referred_id = ?", false, referred.id, facebook_id).order("updated_at DESC").first
 		if referral
     	referral.request_accepted = true
     	referral.save!
