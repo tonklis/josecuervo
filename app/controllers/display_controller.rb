@@ -10,6 +10,11 @@ class DisplayController < ApplicationController
 
 	def home
 
+		if current_user == nil
+			redirect_to login_path
+			return
+		end
+
 		can_vote = current_user.can_vote
 		if not can_vote
 			redirect_to votacion_path	
@@ -18,6 +23,12 @@ class DisplayController < ApplicationController
 	end
 
 	def votacion
+
+		if current_user == nil
+			redirect_to login_path
+			return
+		end
+
 		can_vote = current_user.can_vote
 		if can_vote
 			redirect_to home_path	
