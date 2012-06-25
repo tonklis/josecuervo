@@ -14,4 +14,4 @@ credenciales_recientes = []
 User.select("id, avatar_file_name").where("avatar_file_name is not null").order("updated_at DESC limit 20").each do |user|
 	credenciales_recientes << "http://apps.t2omedia.com.mx/system/users/avatars/#{user.id}/original/#{user.avatar_file_name}"
 end
-UserMailer.send_report(user_count, credenciales_count, fans_count, emails_sent, descargas_made, twitter_shared, credenciales_recientes,"info@josecuervoespecial.com.mx").deliver
+UserMailer.send_report(user_count, credenciales_count, fans_count, emails_sent, descargas_made, twitter_shared, credenciales_recientes,"guillermo.lopez@t2omedia.com.mx").deliver

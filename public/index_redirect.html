@@ -55,9 +55,16 @@
 
 			
 			function embedPlayer() {
-				var flashvars = {esFan:fan};
-				var attributes = {wmode: 'opaque', name:"flashContent"};
-				swfobject.embedSWF("Main2.swf", "flashContent", "800", "800", "10.0", null, flashvars, null, attributes);
+				if (swfobject.hasFlashPlayerVersion("10")) {
+					var flashvars = {esFan:fan};
+					var attributes = {wmode: 'opaque', name:"flashContent"};
+					swfobject.embedSWF("Main.swf?"+new Date(), "flashContent", "800", "815", "10.0", null, flashvars, null, attributes);
+				}
+				else {
+					var flashvars = {};
+					var attributes = {name:"flashContent"};
+					swfobject.embedSWF("playerProductInstall.swf", "flashContent", "100%", "50%", "9.0", null, flashvars, null, attributes);
+				}
 			}
 			//Redirect for authorization for application loaded in an iFrame on Facebook.com 
 			function redirect(id,perms,uri) {
