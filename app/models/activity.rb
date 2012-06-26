@@ -10,7 +10,16 @@ class Activity < ActiveRecord::Base
 		activities = Activity.where("candidato_id is not null")
 		votes = 0
 		activities.each do |activity|
-			votes += activity[:votes] = activity.activities_users.count
+			activity[:votes] = activity.activities_users.count
+			if activity.candidato_id == 1
+				activity[:votes] += 83
+			elsif activity.candidato_id == 2
+				activity[:votes] += 95
+			elsif activity.candidato_id == 3
+				activity[:votes] += 135
+			end
+			votes += activity[:votes]
+
 			voter_ids = ActivitiesUser.find_by_sql("SELECT DISTINCT user_id FROM activities_users WHERE activity_id = #{activity.id} ORDER BY updated_at DESC LIMIT 20")
 			activity[:voter_ids] = []
 			voter_ids.each do |voter|

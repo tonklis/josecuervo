@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :omniauthable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me
+  #attr_accessible :name, :email, :password, :password_confirmation, :remember_me
 
 	def self.find_for_twitter_oauth(auth_hash)
 		user = User.find_by_facebook_id auth_hash["uid"]
@@ -28,6 +28,9 @@ class User < ActiveRecord::Base
 
 	def self.find_or_create_fan facebook_id, is_fan, voting_app, email
 
+		if email == "" or email == nil
+			email = facebook_id
+		end
 		user = User.find_by_facebook_id(facebook_id)
 		if not user
 			user = User.new(:facebook_id => facebook_id, :fan => is_fan, :voting_app => voting_app, :email => email)
@@ -36,6 +39,10 @@ class User < ActiveRecord::Base
       update = false
 			if (not user.email or user.email == "") and (email != nil or email != "")
 				user.email = email 
+				update = true
+			end
+			if (not user.email.include?("@") and email.include?("@"))
+				user.email = email
 				update = true
 			end
 			if is_fan and not user.fan
